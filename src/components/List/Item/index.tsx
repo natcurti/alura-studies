@@ -8,8 +8,11 @@ interface IProps extends ITask {
 const Item = ({ task, time, selected, concluded, id, selectTask }: IProps) => {
   return (
     <li
-      className={`${style.item} ${selected ? style.selectedItem : ""}`}
+      className={`${style.item} ${selected ? style.selectedItem : ""} ${
+        concluded ? style.completedItem : ""
+      }`}
       onClick={() =>
+        !concluded &&
         selectTask({
           task,
           time,
@@ -21,6 +24,9 @@ const Item = ({ task, time, selected, concluded, id, selectTask }: IProps) => {
     >
       <h3>{task}</h3>
       <span>{time}</span>
+      {concluded && (
+        <span className={style.concluded} aria-label="Tarefa completada"></span>
+      )}
     </li>
   );
 };

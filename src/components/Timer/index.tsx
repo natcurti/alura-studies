@@ -7,9 +7,10 @@ import style from "./Timer.module.scss";
 
 interface IProps {
   selected: ITask | undefined;
+  endTask: () => void;
 }
 
-const Timer = ({ selected }: IProps) => {
+const Timer = ({ selected, endTask }: IProps) => {
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const Timer = ({ selected }: IProps) => {
         setTime(time - 1);
         return countDown(time - 1);
       }
+      endTask();
     }, 1000);
   };
 
