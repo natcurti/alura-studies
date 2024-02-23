@@ -1,17 +1,16 @@
 import React from "react";
 import style from "./Button.module.scss";
 
-export class Button extends React.Component<{
-  children: any;
+interface IProps {
+  children?: React.ReactNode;
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: () => void;
-}> {
-  render() {
-    const { type = "button", onClick } = this.props;
-    return (
-      <button type={type} className={style.btn} onClick={onClick}>
-        {this.props.children}
-      </button>
-    );
-  }
 }
+
+export const Button = ({ children, type = "button", onClick }: IProps) => {
+  return (
+    <button type={type} className={style.btn} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
